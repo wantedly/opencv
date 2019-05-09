@@ -320,8 +320,8 @@ if __name__ == "__main__":
     parser.add_argument('--dynamic', default=False, action='store_true', help='build dynamic framework (default is "False" - builds static framework)')
     parser.add_argument('--disable-bitcode', default=False, dest='bitcodedisabled', action='store_true', help='disable bitcode (enabled by default)')
     parser.add_argument('--iphoneos_deployment_target', default=os.environ.get('IPHONEOS_DEPLOYMENT_TARGET', IPHONEOS_DEPLOYMENT_TARGET), help='specify IPHONEOS_DEPLOYMENT_TARGET')
-    parser.add_argument('--iphoneos_archs', default='armv7,armv7s,arm64', help='select iPhoneOS target ARCHS')
-    parser.add_argument('--iphonesimulator_archs', default='i386,x86_64', help='select iPhoneSimulator target ARCHS')
+    parser.add_argument('--iphoneos_archs', default='arm64', help='select iPhoneOS target ARCHS')
+    parser.add_argument('--iphonesimulator_archs', default='x86_64', help='select iPhoneSimulator target ARCHS')
     parser.add_argument('--enable_nonfree', default=False, dest='enablenonfree', action='store_true', help='enable non-free modules (disabled by default)')
     args = parser.parse_args()
 
@@ -338,6 +338,6 @@ if __name__ == "__main__":
         ] if os.environ.get('BUILD_PRECOMMIT', None) else
         [
             (iphoneos_archs, "iPhoneOS"),
-          #  (iphonesimulator_archs, "iPhoneSimulator"),
+           (iphonesimulator_archs, "iPhoneSimulator"),
         ])
     b.build(args.out)
